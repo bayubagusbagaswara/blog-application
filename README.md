@@ -28,3 +28,4 @@
 - REST API Documentation: Swagger
 - Production: AWS
 
+- Harus menggunakan Java version 17
