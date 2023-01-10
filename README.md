@@ -96,3 +96,12 @@ Identity the resources for create REST endpoints
 - Comment : CRUD REST APIs One to Many mapping Between Post and Comment Resources
 - User : Register and Login REST APIs Secure REST APIs using JWT
 - Category : CRUD REST APIs
+
+## Pagination Support for Get All Posts REST API
+
+- private List<Post> content;
+- private int pageNo;
+- private int pageSize;
+- private long totalElements;
+- private int totalPages;
+- private boolean last;
