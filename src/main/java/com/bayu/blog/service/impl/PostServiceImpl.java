@@ -1,6 +1,7 @@
 package com.bayu.blog.service.impl;
 
 import com.bayu.blog.entity.Post;
+import com.bayu.blog.exception.ResourceNotFoundException;
 import com.bayu.blog.payload.PostDTO;
 import com.bayu.blog.repository.PostRepository;
 import com.bayu.blog.service.PostService;
@@ -37,6 +38,13 @@ public class PostServiceImpl implements PostService {
         return posts.stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public PostDTO getPostById(Long id) {
+        Post post = postRepository.findById(id)
+                .orElseThrow(() -> new ResourceNotFoundException("Post", "id", id));
+        return mapToDTO(post);
     }
 
     private PostDTO mapToDTO(Post post) {
