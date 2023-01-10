@@ -1,6 +1,7 @@
 package com.bayu.blog.service;
 
 import com.bayu.blog.payload.PostDTO;
+import com.bayu.blog.payload.PostResponse;
 
 import java.util.List;
 
@@ -8,7 +9,7 @@ public interface PostService {
 
     PostDTO createPost(PostDTO postDTO);
 
-    List<PostDTO> getAllPosts();
+    PostResponse getAllPosts(int pageNo, int pageSize);
 
     PostDTO getPostById(Long id);
 
