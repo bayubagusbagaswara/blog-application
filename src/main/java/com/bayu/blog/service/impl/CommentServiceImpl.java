@@ -2,12 +2,14 @@ package com.bayu.blog.service.impl;
 
 import com.bayu.blog.entity.Comment;
 import com.bayu.blog.entity.Post;
+import com.bayu.blog.exception.BlogApiException;
 import com.bayu.blog.exception.ResourceNotFoundException;
 import com.bayu.blog.payload.CommentDTO;
 import com.bayu.blog.repository.CommentRepository;
 import com.bayu.blog.repository.PostRepository;
 import com.bayu.blog.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -50,6 +52,23 @@ public class CommentServiceImpl implements CommentService {
         return comments.stream()
                 .map(this::mapToDTO)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public CommentDTO getCommentById(Long postId, Long commentId) {
+        // retrieve post entity by id
+        Post post = postRepository.findById(postId)
+                .orElseThrow(() -> new ResourceNotFoundException("Post", "id", postId));
+
+        // retrieve comment by id
+        Comment comment = commentRepository.findById(commentId)
+                .orElseThrow(() -> new ResourceNotFoundException("Comment", "id", commentId));
+
+        if (!comment.getPost().getId().equals(post.getId())) {
+            throw new BlogApiException(HttpStatus.BAD_REQUEST, "Comment does not belong to post");
+        }
+
+        return mapToDTO(comment);
     }
 
     private CommentDTO mapToDTO(Comment comment) {
