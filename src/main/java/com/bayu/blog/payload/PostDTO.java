@@ -2,6 +2,8 @@ package com.bayu.blog.payload;
 
 import lombok.Data;
 
+import java.util.Set;
+
 @Data
 public class PostDTO {
 
@@ -12,4 +14,6 @@ public class PostDTO {
     private String description;
 
     private String content;
+
+    private Set<CommentDTO> comments;
 }
