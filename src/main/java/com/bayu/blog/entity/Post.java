@@ -1,9 +1,7 @@
 package com.bayu.blog.entity;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.HashSet;
 import java.util.Set;
@@ -12,7 +10,8 @@ import java.util.Set;
 @Table(name = "posts", uniqueConstraints = {
         @UniqueConstraint(name = "post_title_unique", columnNames = {"title"})
 })
-@Data
+@Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
 public class Post {
