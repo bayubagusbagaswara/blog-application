@@ -134,3 +134,10 @@ Identity the resources for create REST endpoints
 - `@NotBlank` can be applied only to text values and validates that the property is not null or whitespace
 
 # Validate Create Post and Update Post REST API Request
+
+# Migration and Clean Up
+1. Spring boot version 3.0.x and Java 17 or later
+2. Change package name from javax to jakarta
+3. Change the Hibernate dialect
+4. Drop and create new database
+5. Insert records in posts and comments table
