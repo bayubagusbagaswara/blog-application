@@ -105,3 +105,13 @@ Identity the resources for create REST endpoints
 - private long totalElements;
 - private int totalPages;
 - private boolean last;
+
+## Annotations for Exception Handling
+
+- `@ExceptionHandler` - is an annotation used to handle the specific exceptions and sending the custom responses to the client.
+- `@ControllerAdvice` - is an annotation, to handle the exceptions globally.
+
+### Development Process
+- Create ErrorDetails Class
+- Create GlobalExceptionHandler class
+- Test using Postman Client
