@@ -115,3 +115,22 @@ Identity the resources for create REST endpoints
 - Create ErrorDetails Class
 - Create GlobalExceptionHandler class
 - Test using Postman Client
+
+
+# Java Bean Validation Basics
+
+- We validate a Java Bean with the standard framework - JSR 380, also knows as Bean Validation 2.0.
+- Validating user input is a super common requirement in most applications. And the Java Bean Validation has become the de factor standard for handling this kind of logic.
+- JSR 380 is a specification of the Java API for bean validation and this ensures that the properties of a bean meet specific criteria, using annotations such as @NotNull, @Min, and @Max
+- Hibernate Validator is the reference implementation of the validation API
+
+## Important Bean Validation annotations
+- `@NotNull` validates that the annotated property value is not null.
+- `@Size` validates that the annotated property value has a size between the attributes min and max; can be applied to String, Collection, Map, and array properties
+- `@Min` validates that the annotated property has a value no smaller than the value attribute
+- `@Max` validates that the annotated property has a value no larger than the value attribute
+- `@Email` validates that the annotated property is a valid email address
+- `@NotEmpty` validates that the property is not null or empty; can be applied to String, Collection, Map or Array values
+- `@NotBlank` can be applied only to text values and validates that the property is not null or whitespace
+
+# Validate Create Post and Update Post REST API Request
