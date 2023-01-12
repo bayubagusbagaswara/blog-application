@@ -1,7 +1,9 @@
 package com.bayu.blog.service.impl;
 
+import com.bayu.blog.entity.Comment;
 import com.bayu.blog.entity.Post;
 import com.bayu.blog.exception.ResourceNotFoundException;
+import com.bayu.blog.payload.CommentDTO;
 import com.bayu.blog.payload.PostDTO;
 import com.bayu.blog.payload.PostResponse;
 import com.bayu.blog.repository.PostRepository;
@@ -101,6 +103,14 @@ public class PostServiceImpl implements PostService {
         postDTO.setTitle(post.getTitle());
         postDTO.setDescription(post.getDescription());
         postDTO.setContent(post.getContent());
+        postDTO.setComments(post.getComments().stream().map(comment -> {
+            CommentDTO commentDTO = new CommentDTO();
+            commentDTO.setId(comment.getId());
+            commentDTO.setName(comment.getName());
+            commentDTO.setEmail(comment.getEmail());
+            commentDTO.setBody(comment.getBody());
+            return commentDTO;
+        }).collect(Collectors.toSet()));
 
         return postDTO;
     }
@@ -110,6 +120,15 @@ public class PostServiceImpl implements PostService {
         post.setTitle(postDTO.getTitle());
         post.setDescription(postDTO.getDescription());
         post.setContent(postDTO.getContent());
+        post.setComments(postDTO.getComments().stream().map(commentDTO -> {
+            Comment comment = new Comment();
+            comment.setId(commentDTO.getId());
+            comment.setName(commentDTO.getName());
+            comment.setEmail(commentDTO.getEmail());
+            comment.setBody(commentDTO.getBody());
+            return comment;
+        }).collect(Collectors.toSet()));
+
         return post;
     }
 
