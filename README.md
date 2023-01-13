@@ -141,3 +141,5 @@ Identity the resources for create REST endpoints
 3. Change the Hibernate dialect
 4. Drop and create new database
 5. Insert records in posts and comments table
+
+# Securing REST API with In memory Authentication
