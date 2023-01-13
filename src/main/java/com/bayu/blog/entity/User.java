@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Set;
+
 @Entity
 @Table(name = "users", uniqueConstraints = {
         @UniqueConstraint(columnNames = {"username"}, name = "user_username_unique"),
@@ -29,4 +31,15 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
+
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles",
+            joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+            foreignKey = @ForeignKey(name = "fk_user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"),
+            inverseForeignKey = @ForeignKey(name = "fk_role_id")
+    )
+    private Set<Role> roles;
+
 }
