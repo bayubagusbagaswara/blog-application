@@ -1,8 +1,10 @@
 package com.bayu.blog.controller;
 
 import com.bayu.blog.payload.LoginDTO;
+import com.bayu.blog.payload.RegisterDTO;
 import com.bayu.blog.service.AuthService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -26,6 +28,12 @@ public class AuthController {
         return ResponseEntity.ok(response);
     }
 
+    // Build Register REST API
+    @PostMapping(value = {"/register", "/signup"})
+    public ResponseEntity<String> register(@RequestBody RegisterDTO registerDTO) {
+        String response = authService.register(registerDTO);
+        return new ResponseEntity<>(response, HttpStatus.CREATED);
+    }
 
 
 }
