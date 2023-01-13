@@ -143,3 +143,24 @@ Identity the resources for create REST endpoints
 5. Insert records in posts and comments table
 
 # Securing REST API with In memory Authentication
+
+
+# What is JWT
+- JSON Web Token (JWT) is an open standard (RFC 7519) that defines a compact and self-contained way for securely transmitting information between parties as a JSON object.
+- JWT, or JSON Web Tokens (RFC 7519), is a standard that is mostly used for securing REST APIs.
+- JWT is best way to communicate securely between client and server
+- JWT follows stateless authentication mechanism
+
+## When should you use JSON Web Tokens?
+- Authorization
+- Information Exchange
+
+## Development Steps
+1. Add JWT related Maven dependencies
+2. Create JwtAuthenticationEntryPoint
+3. Add Jwt properties in application properties file
+4. Create JwtTokenProvider - Utility class
+5. Create JwtAuthenticationFilter
+6. Create JwtAuthResponse DTO
+7. Configure JWT in Spring Security
+8. Change Login/Signin REST API to Return JWT Token
