@@ -164,3 +164,19 @@ Identity the resources for create REST endpoints
 6. Create JwtAuthResponse DTO
 7. Configure JWT in Spring Security
 8. Change Login/Signin REST API to Return JWT Token
+
+# Category Management - Requirements
+Build the REST APIs for Category resource:
+1. Add Category REST API
+2. Get Single Category REST API
+3. Get All Categories REST API
+4. Update Category REST API
+5. Delete Category REST API
+6. Get Posts By Category REST API
+
+Secure Category REST APIs using Roles
+1. Add Category REST API - Secure using ADMIN Role
+2. Get Single Category REST API - Provide a Access for All Users
+3. Get All Categories REST API - Provide a Access for All Users
+4. Update Category REST API - Secure using ADMIN Role
+5. Delete Category REST API - Secure using ADMIN Role
