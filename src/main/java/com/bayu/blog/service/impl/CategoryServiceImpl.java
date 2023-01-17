@@ -1,6 +1,7 @@
 package com.bayu.blog.service.impl;
 
 import com.bayu.blog.entity.Category;
+import com.bayu.blog.exception.ResourceNotFoundException;
 import com.bayu.blog.payload.CategoryDTO;
 import com.bayu.blog.repository.CategoryRepository;
 import com.bayu.blog.service.CategoryService;
@@ -22,6 +23,16 @@ public class CategoryServiceImpl implements CategoryService {
         Category savedCategory = categoryRepository.save(category);
 
         return modelMapper.map(savedCategory, CategoryDTO.class);
+    }
+
+    @Override
+    public CategoryDTO getCategoryById(Long categoryId) {
+
+        Category category = categoryRepository.findById(categoryId)
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "id", categoryId));
+
+
+        return modelMapper.map(category, CategoryDTO.class);
     }
 
 }
