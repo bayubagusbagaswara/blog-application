@@ -1,5 +1,6 @@
 package com.bayu.blog.controller;
 
+import com.bayu.blog.payload.JWTAuthResponse;
 import com.bayu.blog.payload.LoginDTO;
 import com.bayu.blog.payload.RegisterDTO;
 import com.bayu.blog.service.AuthService;
@@ -23,9 +24,13 @@ public class AuthController {
 
     // Build Login REST API
     @PostMapping(value = {"/login", "/signin"})
-    public ResponseEntity<String> login(@RequestBody LoginDTO loginDTO) {
-        String response = authService.login(loginDTO);
-        return ResponseEntity.ok(response);
+    public ResponseEntity<JWTAuthResponse> login(@RequestBody LoginDTO loginDTO) {
+        String token = authService.login(loginDTO);
+
+        JWTAuthResponse jwtAuthResponse = new JWTAuthResponse();
+        jwtAuthResponse.setAccessToken(token);
+
+        return ResponseEntity.ok(jwtAuthResponse);
     }
 
     // Build Register REST API
