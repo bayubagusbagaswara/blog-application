@@ -1,11 +1,13 @@
 package com.bayu.blog.service.impl;
 
+import com.bayu.blog.entity.Category;
 import com.bayu.blog.entity.Comment;
 import com.bayu.blog.entity.Post;
 import com.bayu.blog.exception.ResourceNotFoundException;
 import com.bayu.blog.payload.CommentDTO;
 import com.bayu.blog.payload.PostDTO;
 import com.bayu.blog.payload.PostResponse;
+import com.bayu.blog.repository.CategoryRepository;
 import com.bayu.blog.repository.PostRepository;
 import com.bayu.blog.service.PostService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,16 +24,23 @@ import java.util.stream.Collectors;
 public class PostServiceImpl implements PostService {
 
     private final PostRepository postRepository;
+    private final CategoryRepository categoryRepository;
 
     @Autowired
-    public PostServiceImpl(PostRepository postRepository) {
+    public PostServiceImpl(PostRepository postRepository, CategoryRepository categoryRepository) {
         this.postRepository = postRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @Override
     public PostDTO createPost(PostDTO postDTO) {
+
+        Category category = categoryRepository.findById(postDTO.getCategoryId())
+                .orElseThrow(() -> new ResourceNotFoundException("Category", "id", postDTO.getCategoryId()));
+
         // convert DTO to entity
         Post post = mapToEntity(postDTO);
+        post.setCategory(category);
 
         Post newPost = postRepository.save(post);
 
