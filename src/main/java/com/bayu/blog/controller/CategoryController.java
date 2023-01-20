@@ -50,4 +50,11 @@ public class CategoryController {
         return ResponseEntity.ok(categoryService.updateCategory(categoryDTO, categoryId));
     }
 
+    // Build Delete Category REST API
+    @PreAuthorize("hasRole('ADMIN')")
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteCategory(@PathVariable(value = "id") Long categoryId) {
+        categoryService.deleteCategory(categoryId);
+        return ResponseEntity.ok("Category deleted successfully");
+    }
 }
