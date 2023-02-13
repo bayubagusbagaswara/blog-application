@@ -180,3 +180,12 @@ Secure Category REST APIs using Roles
 3. Get All Categories REST API - Provide a Access for All Users
 4. Update Category REST API - Secure using ADMIN Role
 5. Delete Category REST API - Secure using ADMIN Role
+
+# Bagian 21 : Versioning REST APIs
+- API versioning is the practice of transparently managing changes to your API
+- We will look at 4 ways of versioning a REST API
+1. Versioning through URI Path
+2. Versioning through query parameters
+3. Versioning through custom headers
+4. Versioning through content negotiation
+
